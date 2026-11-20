@@ -9,13 +9,9 @@
 <script type="module" src="./unlock.js"></script>
 </head>
 <body data-read-only data-locked>
-<main class="archive-lock" aria-labelledby="archive-title">
+<main class="archive-lock" aria-label="Unlock snapshot">
   <form id="archive-unlock" class="archive-unlock">
-    <img class="brand" src="./runway-logo.png" alt="Runway" width="960" height="188">
-    <h1 id="archive-title">Reconstruction review</h1>
-    <p class="muted">MSRVTT-QA · Read-only snapshot</p>
-    <label for="archive-password">Password</label>
-    <input id="archive-password" type="password" autocomplete="current-password" required autofocus>
+    <input id="archive-password" type="password" aria-label="Password" placeholder="Password" autocomplete="current-password" required autofocus>
     <button class="primary" type="submit" disabled>Unlock</button>
     <p id="archive-status" role="status" aria-live="polite"></p>
   </form>
@@ -82,7 +78,7 @@
     <section id="workflow-page" class="workflow-page" hidden></section>
   </main>
 </div>
-<footer><span id="notice" role="status" aria-live="polite"></span><span class="shortcuts"><kbd>Space</kbd> Play <kbd>←</kbd><kbd>→</kbd> Step</span></footer>
+<footer><span class="archive-mode">Read-only</span><span id="notice" role="status" aria-live="polite"></span><span class="shortcuts"><kbd>Space</kbd> Play <kbd>←</kbd><kbd>→</kbd> Step</span></footer>
 <dialog id="review-confirm" class="review-dialog" aria-labelledby="review-confirm-title" aria-describedby="review-confirm-description">
   <h2 id="review-confirm-title"></h2>
   <p id="review-confirm-description"></p>
