@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Reconstruction review</title>
+<link rel="stylesheet" href="./style.css">
+<link rel="stylesheet" href="./gate.css">
+<script type="module" src="./unlock.js"></script>
+</head>
+<body data-read-only data-locked>
+<main class="archive-lock" aria-labelledby="archive-title">
+  <form id="archive-unlock" class="archive-unlock">
+    <img class="brand" src="./runway-logo.png" alt="Runway" width="960" height="188">
+    <h1 id="archive-title">Reconstruction review</h1>
+    <p class="muted">MSRVTT-QA · Read-only snapshot</p>
+    <label for="archive-password">Password</label>
+    <input id="archive-password" type="password" autocomplete="current-password" required autofocus>
+    <button class="primary" type="submit" disabled>Unlock</button>
+    <p id="archive-status" role="status" aria-live="polite"></p>
+  </form>
+</main>
+
+<header class="masthead">
+  <img class="brand" src="./runway-logo.png" alt="Runway" width="960" height="188">
+  <nav class="workflow-nav" aria-label="Workflow">
+    <button type="button" data-workflow="labeling" aria-current="page">Labeling</button>
+    <button type="button" data-workflow="generation">Generation</button>
+    <button type="button" data-workflow="evaluation">Evaluation</button>
+  </nav>
+  <div class="mast-actions"><span id="progress">Loading dataset</span><button id="save" disabled>Save draft</button><button id="confirm" class="primary" disabled>Confirm clip</button></div>
+</header>
+<div class="workspace">
+  <aside class="library" aria-label="Clips">
+    <div id="dataset-nav" class="dataset-picker" hidden>
+      <span class="dataset-label">Dataset</span>
+    </div>
+    <nav id="evaluation-sidebar" class="evaluation-sidebar" aria-label="Evaluation sections" hidden>
+      <button type="button" data-evaluation-section="overview">Overview</button>
+      <button type="button" data-evaluation-section="jobs">Evaluations</button>
+    </nav>
+    <div id="label-sidebar">
+      <div class="library-head"><h2>Clips</h2><div class="filters"><input type="search" id="search" placeholder="Find a clip" aria-label="Find a clip"><div id="filter"></div></div></div>
+      <div id="clip-list" class="clip-list"></div>
+    </div>
+  </aside>
+  <main id="main-content" class="main-content" tabindex="0" aria-label="Review content">
+    <section class="viewer" tabindex="0" aria-label="Clip review">
+      <div class="clip-header"><div><div id="clip-meta" class="eyebrow">Video dataset</div><h1 id="clip-title">Open a clip</h1></div><div class="pager"><button id="previous" aria-label="Previous clip" data-tooltip="Previous clip">Prev</button><button id="next" aria-label="Next clip" data-tooltip="Next clip">Next</button></div></div>
+      <div class="stage">
+        <div id="source" class="source">
+          <video id="video" playsinline preload="metadata" hidden></video>
+          <img id="still" alt="Exact source frame">
+          <div id="box-layer" hidden><div id="box" role="presentation" hidden><span class="corner" data-handle="nw"></span><span class="corner" data-handle="ne"></span><span class="corner" data-handle="sw"></span><span class="corner" data-handle="se"></span></div></div>
+        </div>
+        <div class="stage-note" id="stage-note">Exact frame</div>
+      </div>
+      <div class="transport">
+        <div class="play-controls"><button id="back-frame" aria-label="Previous frame" data-tooltip="Previous frame (Left)">−1</button><button id="play">Play</button><button id="forward-frame" aria-label="Next frame" data-tooltip="Next frame (Right)">+1</button></div>
+        <output id="timecode">00:00:00</output>
+        <label class="frame-entry">Frame <input id="frame-number" type="number" min="0" value="0" aria-label="Frame number"><span id="last-frame"></span></label>
+      </div>
+      <div class="timeline" aria-label="Frame timeline">
+        <div class="timeline-head"><h2>Timeline</h2><div class="ruler"><span>00:00</span><span id="mid-time"></span><span id="end-time"></span></div></div>
+        <div class="scrub-row"><span class="muted">Playhead</span><input type="range" id="scrub" min="0" max="0" value="0" aria-label="Scrub frames"></div>
+        <div id="lanes"></div>
+      </div>
+    </section>
+    <aside class="inspector" aria-label="Annotation editor">
+      <nav class="tabs" aria-label="Editor tabs">
+        <button data-tab="labels" class="selected" aria-pressed="true">Labels</button>
+        <button data-tab="references" aria-pressed="false">References</button>
+        <button data-tab="prompt" aria-pressed="false">Prompt</button>
+      </nav>
+      <div id="autolabel-controls" class="autolabel-controls">
+        <button id="redo-autolabel" type="button" disabled>Redo Autolabel</button>
+        <button id="apply-autolabel" type="button" hidden>Load refreshed Pegasus segments</button>
+        <span id="autolabel-status" role="status"></span>
+      </div>
+      <div id="panel" tabindex="0" role="region" aria-label="Annotation content"></div>
+    </aside>
+    <section id="workflow-page" class="workflow-page" hidden></section>
+  </main>
+</div>
+<footer><span id="notice" role="status" aria-live="polite"></span><span class="shortcuts"><kbd>Space</kbd> Play <kbd>←</kbd><kbd>→</kbd> Step</span></footer>
+<dialog id="review-confirm" class="review-dialog" aria-labelledby="review-confirm-title" aria-describedby="review-confirm-description">
+  <h2 id="review-confirm-title"></h2>
+  <p id="review-confirm-description"></p>
+  <form method="dialog" class="dialog-actions">
+    <button id="review-confirm-cancel" value="cancel" autofocus>Cancel</button>
+    <button id="review-confirm-submit" value="confirm" class="primary">Continue</button>
+  </form>
+</dialog>
+<template id="empty"><p class="empty">No items in this track.</p></template>
+</body>
+</html>

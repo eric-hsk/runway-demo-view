@@ -1,0 +1,9 @@
+body[data-locked] > :not(.archive-lock) { display: none !important; }
+body:not([data-locked]) > .archive-lock { display: none; }
+.archive-lock { position: fixed; inset: 0; display: grid; place-items: center; padding: 20px; overflow: auto; }
+.archive-unlock { width: min(100%, 385px); display: grid; gap: 12px; padding: 26px; border: 1px solid var(--line); border-radius: 10px; background: var(--deep); }
+.archive-unlock .brand { margin-bottom: 8px; }
+.archive-unlock label { margin-top: 8px; }
+.archive-unlock input { min-width: 0; padding: 10px 12px; }
+.archive-unlock button { margin-top: 2px; }
+#archive-status { min-height: 1.4em; color: var(--muted); }
